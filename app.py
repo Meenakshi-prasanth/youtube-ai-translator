@@ -43,7 +43,7 @@ if st.button("Translate Video"):
                 st.write("📥 Downloading audio from YouTube...")
                 
                 # This tells Python to look in your project folder for the .exe files
-          ydl_opts = {
+                ydl_opts = {
                     'format': 'bestaudio/best',
                     'outtmpl': 'temp_audio.%(ext)s',
                     'ffmpeg_location': '/usr/bin/ffmpeg',
@@ -104,5 +104,6 @@ if st.button("Translate Video"):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
 
 
