@@ -43,12 +43,11 @@ if st.button("Translate Video"):
                 st.write("📥 Downloading audio from YouTube...")
                 
                 # This tells Python to look in your project folder for the .exe files
-                current_folder = os.getcwd() 
 
                 ydl_opts = {
                     'format': 'bestaudio/best',
                     'outtmpl': 'temp_audio.%(ext)s',
-                    'ffmpeg_location': current_folder, # The fix for the red error
+                    'ffmpeg_location': '/usr/bin/ffmpeg', # <--- Standard path for Cloud/Linux
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
@@ -103,4 +102,5 @@ if st.button("Translate Video"):
         if os.path.exists(temp_file):
             os.remove(temp_file)
             st.sidebar.markdown("---")
+
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
