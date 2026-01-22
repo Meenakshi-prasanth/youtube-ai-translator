@@ -44,16 +44,9 @@ if st.button("Translate Video"):
                 st.write("📥 Downloading audio from YouTube...")
                 
                 # This tells Python to look in your project folder for the .exe files
-                import yt_dlp
-import streamlit as st
 
 def download_audio(url):
 st.write("🎧 Downloading audio from YouTube...")
-import streamlit as st
-import yt_dlp
-
-def download_audio(url):
-    st.write("🎧 Downloading audio from YouTube...")
 
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -70,9 +63,9 @@ def download_audio(url):
     except Exception as e:
         st.error(f"❌ YouTube blocked this request.\n\n{e}")
         return False
-                # 2. Load Whisper Model
-                st.write(f"🧠 Loading Whisper AI ({model_size} model)...")
-                model = whisper.load_model(model_size)
+              # 2. Load Whisper Model
+          st.write(f"🧠 Loading Whisper AI ({model_size} model)...")
+          model = whisper.load_model(model_size)
                 
                 # 3. Transcribe & Translate
                 st.write("✨ Transcribing and translating to English...")
@@ -117,6 +110,7 @@ def download_audio(url):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
 
 
 
