@@ -44,18 +44,28 @@ if st.button("Translate Video"):
                 
                 # This tells Python to look in your project folder for the .exe files
                 ydl_opts = {
-                  'format': 'bestaudio/best',
-                  'outtmpl': 'temp_audio.%(ext)s',
-                  'ffmpeg_location': '/usr/bin/ffmpeg',
-                  'quiet': True,
-                  'no_warnings': True,
-                  'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                  'postprocessors': [{
-                      'key': 'FFmpegExtractAudio',
-                      'preferredcodec': 'mp3',
-                      'preferredquality': '192',
-                  }],
-               }
+                    'format': 'bestaudio/best',
+                    'outtmpl': 'temp_audio.%(ext)s',
+                    'ffmpeg_location': '/usr/bin/ffmpeg',
+                    'nocheckcertificate': True, # Skips SSL certificate issues
+                    'ignoreerrors': False,
+                    'logtostderr': False,
+                    'quiet': True,
+                    'no_warnings': True,
+                    'default_search': 'auto',
+                    'source_address': '0.0.0.0', # Forces IPv4, which is less likely to be blocked
+                    'http_headers': {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                        'Accept-Language': 'en-US,en;q=0.5',
+                        'Referer': 'https://www.google.com/',
+                    },
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': 'mp3',
+                        'preferredquality': '192',
+                    }],
+                }
  
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
@@ -107,6 +117,7 @@ if st.button("Translate Video"):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
 
 
 
