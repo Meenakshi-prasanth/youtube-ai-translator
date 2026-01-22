@@ -43,17 +43,18 @@ if st.button("Translate Video"):
                 st.write("📥 Downloading audio from YouTube...")
                 
                 # This tells Python to look in your project folder for the .exe files
-
-                ydl_opts = {
+                 ydl_opts = {
                     'format': 'bestaudio/best',
                     'outtmpl': 'temp_audio.%(ext)s',
-                    'ffmpeg_location': '/usr/bin/ffmpeg', # <--- Standard path for Cloud/Linux
+                    'ffmpeg_location': '/usr/bin/ffmpeg',
+                    'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', # <--- Add this line!
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
                 }
+                
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
                 
@@ -104,3 +105,4 @@ if st.button("Translate Video"):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
