@@ -4,6 +4,7 @@ import whisper
 import os
 from fpdf import FPDF
 
+
 # --- UI Setup ---
 st.set_page_config(page_title="GlobalTube Translator", page_icon="🌐")
 st.title("🌐 YouTube Audio Translator")
@@ -43,33 +44,32 @@ if st.button("Translate Video"):
                 st.write("📥 Downloading audio from YouTube...")
                 
                 # This tells Python to look in your project folder for the .exe files
-                ydl_opts = {
-                    'format': 'bestaudio/best',
-                    'outtmpl': 'temp_audio.%(ext)s',
-                    'ffmpeg_location': '/usr/bin/ffmpeg',
-                    'nocheckcertificate': True, # Skips SSL certificate issues
-                    'ignoreerrors': False,
-                    'logtostderr': False,
-                    'quiet': True,
-                    'no_warnings': True,
-                    'default_search': 'auto',
-                    'source_address': '0.0.0.0', # Forces IPv4, which is less likely to be blocked
-                    'http_headers': {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                        'Accept-Language': 'en-US,en;q=0.5',
-                        'Referer': 'https://www.google.com/',
-                    },
-                    'postprocessors': [{
-                        'key': 'FFmpegExtractAudio',
-                        'preferredcodec': 'mp3',
-                        'preferredquality': '192',
-                    }],
-                }
- 
-                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                    ydl.download([url])
-                
+                import yt_dlp
+import streamlit as st
+
+def download_audio(url):
+st.write("🎧 Downloading audio from YouTube...")
+import streamlit as st
+import yt_dlp
+
+def download_audio(url):
+    st.write("🎧 Downloading audio from YouTube...")
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': 'temp_audio.%(ext)s',
+        'quiet': True,
+        'noplaylist': True,
+        'user_agent': 'Mozilla/5.0'
+    }
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+        return True
+    except Exception as e:
+        st.error(f"❌ YouTube blocked this request.\n\n{e}")
+        return False
                 # 2. Load Whisper Model
                 st.write(f"🧠 Loading Whisper AI ({model_size} model)...")
                 model = whisper.load_model(model_size)
@@ -117,6 +117,7 @@ if st.button("Translate Video"):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
 
 
 
