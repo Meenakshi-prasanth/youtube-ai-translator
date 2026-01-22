@@ -53,7 +53,7 @@ if st.button("Translate Video"):
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                }
+                 }
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
                 
@@ -104,6 +104,7 @@ if st.button("Translate Video"):
             st.sidebar.markdown("---")
 
 st.sidebar.write("Developed by [Meenakshi Prasanth] | CSE Project 2026")
+
 
 
 
