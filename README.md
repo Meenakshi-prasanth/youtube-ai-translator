@@ -177,9 +177,6 @@ Class of 2025
 This project is intended for educational and research purposes only.
 
 
----
-
-
 
 
 Just tell me 😄
